@@ -3,12 +3,7 @@ using System.Timers;
 
 class ReflectionActivity : Activity
 {
-    private readonly List<string> _prompts = [
-        "Think of a time when you stood up for someone else.",
-        "Think of a time when you did something really difficult.",
-        "Think of a time when you helped someone in need.",
-        "Think of a time when you did something truly selfless."
-    ];
+    private List<string> _prompts;
 
     private List<string> _questions;
 
@@ -52,6 +47,14 @@ class ReflectionActivity : Activity
 
     private string SelectRandomPrompt()
     {
+        if (_prompts.Count == 0)
+            _prompts = [
+                "Think of a time when you stood up for someone else.",
+                "Think of a time when you did something really difficult.",
+                "Think of a time when you helped someone in need.",
+                "Think of a time when you did something truly selfless."
+            ];
+
         Random random = new();
         int randomIndex = random.Next(_prompts.Count);
         string prompt = _prompts[randomIndex];
